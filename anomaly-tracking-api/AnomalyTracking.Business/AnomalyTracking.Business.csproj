@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\Litigeo.Domain\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\Litigeo.Domain\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D0D4203-9E0A-46DF-AE69-E0834081B423}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnomalyTracking.Business</RootNamespace>
+    <AssemblyName>AnomalyTracking.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Beta|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Beta\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Int|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Int\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Prod|AnyCPU'">
+    <OutputPath>bin\Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Mailjet.Client, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mailjet.Api.1.2.2\lib\net45\Mailjet.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2020.0.1.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2020.0.1\lib\net40\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mappers\Anomalies\AnomalyMapper.cs" />
+    <Compile Include="Mappers\AnomalyDeclarations\AnomalyDeclarationMapper.cs" />
+    <Compile Include="Mappers\AnomalyTypes\AnomalyTypeMapper.cs" />
+    <Compile Include="Mappers\Cavities\CavityMapper.cs" />
+    <Compile Include="Mappers\Clients\ClientAdressMapper.cs" />
+    <Compile Include="Mappers\Clients\ClientMapper.cs" />
+    <Compile Include="Mappers\Faces\FaceMapper.cs" />
+    <Compile Include="Mappers\Molds\MoldMapper.cs" />
+    <Compile Include="Mappers\Processs\ProcessMapper.cs" />
+    <Compile Include="Mappers\Products\ProductMapper.cs" />
+    <Compile Include="Mappers\Users\UserMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceApp\Anomalies\IServiceAnomalyApp.cs" />
+    <Compile Include="ServiceApp\Anomalies\ServiceAnomalyApp.cs" />
+    <Compile Include="ServiceApp\Authentifications\IServiceAuthenticationApp.cs" />
+    <Compile Include="ServiceApp\Authentifications\ServiceAuthenticationApp.cs" />
+    <Compile Include="ServiceApp\AnomalyDeclarations\IServicesAnomalyDeclarationApp.cs" />
+    <Compile Include="ServiceApp\AnomalyDeclarations\ServiceAnomalyDeclarationApp.cs" />
+    <Compile Include="ServiceApp\AnomalyTypes\IServiceAnomalyTypeApp.cs" />
+    <Compile Include="ServiceApp\AnomalyTypes\ServiceAnomalyTypeApp.cs" />
+    <Compile Include="ServiceApp\Cavities\IServiceCavityApp.cs" />
+    <Compile Include="ServiceApp\Cavities\ServiceCavityApp.cs" />
+    <Compile Include="ServiceApp\Clients\IServiceClientApp.cs" />
+    <Compile Include="ServiceApp\Clients\ServiceClientApp.cs" />
+    <Compile Include="ServiceApp\Faces\IServiceFaceApp.cs" />
+    <Compile Include="ServiceApp\Faces\ServiceFaceApp.cs" />
+    <Compile Include="ServiceApp\Molds\IServiceMoldApp.cs" />
+    <Compile Include="ServiceApp\Molds\ServiceMoldApp.cs" />
+    <Compile Include="ServiceApp\Processs\IServiceProcessApp.cs" />
+    <Compile Include="ServiceApp\Processs\ServiceProcessApp.cs" />
+    <Compile Include="ServiceApp\Products\IServiceProductApp.cs" />
+    <Compile Include="ServiceApp\Products\ServiceProductApp.cs" />
+    <Compile Include="ServiceApp\Users\IServiceUserApp.cs" />
+    <Compile Include="ServiceApp\Users\ServiceUserApp.cs" />
+    <Compile Include="Service\Anomalies\IServiceAnomaly.cs" />
+    <Compile Include="Service\Anomalies\ServiceAnomaly.cs" />
+    <Compile Include="Service\AnomalyDeclarations\IServiceAnomalyDeclaration.cs" />
+    <Compile Include="Service\AnomalyDeclarations\ServiceAnomalyDeclaration.cs" />
+    <Compile Include="Service\AnomalyTypes\IServiceAnomalyType.cs" />
+    <Compile Include="Service\AnomalyTypes\ServiceAnomalyType.cs" />
+    <Compile Include="Service\Cavities\IServiceCavity.cs" />
+    <Compile Include="Service\Cavities\ServiceCavity.cs" />
+    <Compile Include="Service\Faces\IServiceFace.cs" />
+    <Compile Include="Service\Faces\ServiceFace.cs" />
+    <Compile Include="Service\Molds\IServiceMolds.cs" />
+    <Compile Include="Service\Molds\ServiceMold.cs" />
+    <Compile Include="Service\Processs\IServiceProcess.cs" />
+    <Compile Include="Service\Processs\ServiceProcess.cs.cs" />
+    <Compile Include="Service\Products\IServiceProduct.cs" />
+    <Compile Include="Service\Products\ServiceProduct.cs" />
+    <Compile Include="Service\Clients\IServiceClient.cs" />
+    <Compile Include="Service\Clients\ServiceClient.cs" />
+    <Compile Include="Service\Users\IServiceUser.cs" />
+    <Compile Include="Service\Users\ServiceUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnomalyTracking.Enums\AnomalyTracking.Enums.csproj">
+      <Project>{0df4cd94-3e33-47ff-b4a1-acf55cb1b64f}</Project>
+      <Name>AnomalyTracking.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnomalyTracking.Model\AnomalyTracking.Model.csproj">
+      <Project>{cb31c1c8-e1fb-478b-94ed-3506b5aa3231}</Project>
+      <Name>AnomalyTracking.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnomalyTracking.Repository\AnomalyTracking.Repository.csproj">
+      <Project>{8c6ccb0d-0d18-4ce0-a2b3-661d1699f586}</Project>
+      <Name>AnomalyTracking.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared.Core.Repository\Shared.Core.Repository.csproj">
+      <Project>{171d3767-1c25-4c45-a530-81a9355420ba}</Project>
+      <Name>Shared.Core.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared.Core\Shared.Core.csproj">
+      <Project>{52f0f08f-3613-499b-a9a6-d38d23ceb8c8}</Project>
+      <Name>Shared.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

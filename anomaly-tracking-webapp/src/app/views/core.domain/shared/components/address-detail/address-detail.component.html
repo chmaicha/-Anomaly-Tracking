@@ -1,0 +1,59 @@
+<form #addressDetailForm="ngForm">
+    <div class="container-fluid ">
+        <h5>{{title | translate}}</h5>
+        <div class="separator-bread border-top"></div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 form-group mb-3">
+                <label for="streetnumber">{{'app.shared.streetnumber'|translate}} : </label>
+                <input [(ngModel)]="address.StreetNumber" type="text" class="form-control" maxlength="10"
+                    id="streetnumber{{address.Id}}" name="streetnumber" name="streetnumber" #streetnumber="ngModel">
+            </div>
+            <div class="col-lg-8 col-md-6 form-group mb-3">
+                <label for="streetname" [ngClass]="{'required':required}">{{'app.shared.streetname'|translate}} :
+                </label>
+                <input [(ngModel)]="address.StreetName" type="text" class="form-control" maxlength="50"
+                    name="streetname" id="streetname" [required]="required" #streetname="ngModel">
+                <div class="form__input--alert" *ngIf="streetname.invalid && (streetname.dirty || streetname.touched)">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-6 form-group mb-3">
+                <label for="FurtherInformation">{{'app.shared.furtherinformation'|translate}} : </label>
+                <input [(ngModel)]="address.FurtherInformation" type="text" class="form-control" maxlength="100"
+                    name="FurtherInformation" id="FurtherInformation">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 form-group mb-3">
+                <label for="zipcode" [ngClass]="{'required':required}">{{'app.shared.zipcode'|translate}} : </label>
+                <input [(ngModel)]="address.ZipCode" type="text" class="form-control" maxlength="10" id="zipcode"
+                    name="zipcode" [required]="required" #zipcode="ngModel">
+                <div class="form__input--alert" *ngIf="zipcode.invalid && (zipcode.dirty || zipcode.touched)">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 form-group mb-3">
+                <label for="city" [ngClass]="{'required':required}">{{'app.shared.city'|translate}} : </label>
+                <input [(ngModel)]="address.City" type="text" class="form-control" maxlength="50" id="city" name="city"
+                    [required]="required" #city="ngModel">
+                <div class="form__input--alert" *ngIf="city.invalid && (city.dirty || city.touched)">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 form-group mb-3">
+                <label for="country" [ngClass]="{'required':required}">{{'app.shared.country'| translate}} : </label>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1" *ngIf="address.CountryCode">
+                            <img class="addresslogo" src="./assets/flags/{{address.CountryCode}}.png" alt="">
+                        </span>
+                    </div>
+                    <select class="custom-select badge-gray-100" [(ngModel)]="address.CountryCode" id="country"
+                        name="country" #country="ngModel" [required]="required">
+                        <option *ngFor="let country of lvfCountries" [value]="country.value">
+                            {{country.label|translate}} </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

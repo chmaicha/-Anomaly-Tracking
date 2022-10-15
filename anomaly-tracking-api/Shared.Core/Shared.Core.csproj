@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52F0F08F-3613-499B-A9A6-D38D23CEB8C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Shared.Core</RootNamespace>
+    <AssemblyName>Shared.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared.Core.Business\Common\IMapper.cs" />
+    <Compile Include="Shared.Core.Business\Helpers\ManagementRuleHelper.cs" />
+    <Compile Include="Shared.Core.Business\Helpers\Utility.cs" />
+    <Compile Include="Shared.Core.Business\Services\IServiceBase.cs" />
+    <Compile Include="Shared.Core.Business\Services\IServiceContext.cs" />
+    <Compile Include="Shared.Core.Business\Services\ServiceBase.cs" />
+    <Compile Include="Shared.Core.Client\Common\LvfHttpMethod.cs" />
+    <Compile Include="Shared.Core.Client\Common\Response.cs" />
+    <Compile Include="Shared.Core.Enums\LvfGender.cs" />
+    <Compile Include="Shared.Core.Enums\LvfOperationType.cs" />
+    <Compile Include="Shared.Core.Model\Common\Address.cs" />
+    <Compile Include="Shared.Core.Model\Core\EntityBase.cs" />
+    <Compile Include="Shared.Core.Model\Filters\SearchFilterBase.cs" />
+    <Compile Include="Shared.Core.Model\Users\User.cs" />
+    <Compile Include="Shared.Core.WebServices\Common\IServiceBaseWeb.cs" />
+    <Compile Include="Shared.Core.WebServices\Common\ServiceBaseWeb.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Shared.Core.Repository\Shared.Core.Repository.csproj">
+      <Project>{171d3767-1c25-4c45-a530-81a9355420ba}</Project>
+      <Name>Shared.Core.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

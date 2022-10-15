@@ -1,0 +1,110 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true" style="min-width: 60px; background: #f3f3f3" autosize fixedTopGap="56">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+
+    <mat-sidenav-content [@onSideNavChange]="sidebarState">
+        <div class="SOM">
+            <div style="background-color: #edf2fb">
+                <app-header></app-header>
+                <mat-toolbar style="background-color: #edf2fb">
+                    <p class="px-6 mt-2 text-left capitalize text-2xl font-semibold">
+                        Charts
+                    </p>
+                </mat-toolbar>
+                <div class="container max-w-6xl  mx-auto">
+
+
+                    <div class="  grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        <div class="p-3 h-28 bg-white hover:bg-sky-200 rounded shadow-sm transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+                            <div class="flex flex-row">
+
+                                <ngx-gauge class="py-1" [value]="AnomalyValue" type="full" [thick]="5" cap="round" [size]="70" append="%">
+                                </ngx-gauge>
+                                <div>
+                                    <span class="mt-3 ml-5 text-current">Anomalies
+                                  <div class="px-4 py-2" >{{anomalyNumber}}</div>
+                                  </span>
+                                    <p class=" px-4  ml-10 text-teal-600">0.02% <span style=" font-size: 15px !important;" class="material-icons  text-teal-600">call_made</span>
+                                    </p>
+
+                                </div>
+                                <!-- <button (click)=" onUpdateClick() ">Update</button> -->
+                            </div>
+                        </div>
+
+                        <div class="p-3 h-28 bg-white rounded shadow-sm transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-row">
+
+                                    <ngx-gauge class="py-1" [value]="ClientValue" type="full" [thick]="5" cap="round" [size]="70" append="%">
+                                    </ngx-gauge>
+                                    <div>
+                                        <span class="mt-3 ml-5 text-current">Clients
+                                    <div class="px-4 py-2" >{{clientNumber}}</div>
+                                    </span>
+                                        <p class=" px-4  ml-10 text-red-500">0.01% <span style=" font-size: 15px !important;" class="material-icons  text-red-500">south_east</span>
+                                        </p>
+                                    </div>
+                                    <!-- <button (click)=" onUpdateClick() ">Update</button> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 h-28 bg-white rounded shadow-sm transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-row">
+
+                                    <ngx-gauge class="py-1" [value]="UserValue" type="full" [thick]="5" cap="round" [size]="70" append="%">
+                                    </ngx-gauge>
+                                    <div>
+                                        <span class="mt-3 ml-5 text-current">Users
+                                  <div class="px-4 py-2" >{{usersNumber}}</div>
+                                  </span>
+                                        <p class=" px-4  ml-10 text-teal-600">0.05% <span style=" font-size: 15px !important;" class="material-icons  text-teal-600">call_made</span>
+                                        </p>
+                                    </div>
+
+                                    <!-- <button (click)=" onUpdateClick() ">Update</button> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-3 h-28 bg-white rounded shadow-sm transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex flex-row">
+
+                                    <ngx-gauge class="py-1" [value]="topValue" type="full" [thick]="5" cap="round" [size]="70" append="%">
+                                    </ngx-gauge>
+                                    <div>
+                                        <span class="mt-3 ml-5 text-current">Top Anomaly
+                              <div class="px-4 py-2" >{{usersNumber}}</div>
+                              </span>
+                                        <p class=" px-4  ml-10 text-teal-600">0.05% <span style=" font-size: 15px !important;" class="material-icons  text-teal-600">call_made</span>
+                                        </p>
+                                    </div>
+
+                                    <!-- <button (click)=" onUpdateClick() ">Update</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
+                        <div class="pr-4 bg-white hover:bg-sky-200 rounded shadow-sm transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-80 duration-300">
+                            <div *ngIf="chart" class="area  " [chart]="areaChart"></div>
+                            <div *ngIf="chart2" class="area" [chart]="areaChart2"></div>
+                            <!-- <button  class=" mb-2 ml-5  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="changeChart()" >anomaly by time</button> -->
+                        </div>
+
+                        <div class="  bg-white rounded shadow-sm transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-80 duration-300">
+                            <div id="container"></div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,11 @@
+<div class="input-group  search-input">
+    <input type="text" class="form-control search-input" [(ngModel)]="searchInput"
+      placeholder="{{toolbarService.searchInputPlaceHolder|translate}}" 
+      ngbTooltip="{{toolbarService.searchInputPlaceHolder|translate}}"
+      name="search" id="search">
+    <div class="input-group-append">
+      <button class="input-group form-control search-input search-input-pointer" id="inputGroup-sizing-default" (click)="onClick()">
+        <span class="material-icons searchglass search-icon search-glass">search</span>
+      </button>
+    </div>
+  </div>

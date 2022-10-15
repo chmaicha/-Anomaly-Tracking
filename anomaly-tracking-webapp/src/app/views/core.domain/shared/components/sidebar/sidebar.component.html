@@ -1,0 +1,126 @@
+<div class="sidebar_menu" [@onSideNavChange]="sidebarState">
+  <app-toggle-sidebar class="ml-2"></app-toggle-sidebar>
+
+  <mat-nav-list class="menu-list">
+    <br />
+    <br />
+    <a
+    *ngIf="CurrentUserRole === '1'"
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/dashboard"
+      title="Dashboard"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon
+        class="mr-6 icon hover:transition-all"
+        [@iconAnimation]="sidebarState"
+        >home</mat-icon
+      >
+      <span class="label" [@labelAnimation]="sidebarState">Dashboard</span>
+    </a>
+    <br /><br />
+    <a
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/anomaly-declaration"
+      title="Report Anomaly"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState">
+        warning
+      </mat-icon>
+      <span class="label" [@labelAnimation]="sidebarState">Report Anomaly</span>
+    </a>
+    <br /><br />
+
+    <a
+
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/anomaly-history"
+      title="Anomaly History"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState">
+        manage_search
+      </mat-icon>
+      <span class="label" [@labelAnimation]="sidebarState"
+        >Anomaly History</span
+      >
+    </a>
+
+    <br /><br />
+    <a
+    *ngIf="CurrentUserRole === '1'"
+
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/graphs"
+      title="statistics"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState"
+        >trending_up</mat-icon
+      >
+      <span class="label" [@labelAnimation]="sidebarState">Statistics</span>
+    </a>
+    <br /><br />
+    <a
+    *ngIf="CurrentUserRole === '1'"
+
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/user-management"
+      title="Manage Employes"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState">
+        manage_accounts
+      </mat-icon>
+      <span class="label" [@labelAnimation]="sidebarState">Manage Users</span>
+    </a>
+    <br /><br />
+
+    <a
+    *ngIf="CurrentUserRole === '1'"
+
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/project-management"
+      title="Manage Project"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState">
+        support
+      </mat-icon>
+      <span class="label" [@labelAnimation]="sidebarState"
+        >Manage Projects</span
+      >
+    </a>
+    <!-- <mat-divider></mat-divider>
+      <a mat-list-item routerLinkActive="active-list-item" routerLink="/" title="Login"
+      class="hover:-translate-y-1 hover:scale-100  duration-300 ">
+        <mat-icon class="mr-9 icon" [@iconAnimation]="sidebarState">logout</mat-icon>
+        <span class=" label" [@labelAnimation]="sidebarState">Logout </span>
+         (click)="OpenImprimentsettings()
+      </a> -->
+      <br><br>
+      <a
+      *ngIf="CurrentUserRole === '1'"
+
+      mat-list-item
+      routerLinkActive="active-list-item"
+      routerLink="/process-management"
+      title="Manage Project"
+      class="hover:-translate-y-1 hover:scale-100 duration-300"
+    >
+      <mat-icon class="mr-6 icon" [@iconAnimation]="sidebarState">
+        open_with
+      </mat-icon>
+      <span class="label" [@labelAnimation]="sidebarState"
+        >Manage Processes</span
+      >
+    </a>
+  </mat-nav-list>
+</div>

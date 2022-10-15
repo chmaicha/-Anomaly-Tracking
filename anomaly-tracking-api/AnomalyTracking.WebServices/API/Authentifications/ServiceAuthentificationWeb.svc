@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="AnomalyTracking.WebServices.API.Authentifications.ServiceAuthentificationWeb" CodeBehind="ServiceAuthentificationWeb.svc.cs" %>

@@ -1,0 +1,10 @@
+/**/node_modules
+/**/.vs
+/**/bin
+/**/obj
+/**/packages
+/**/*.user
+/**/dist
+
+/**/*.user
+/**/dist.zip

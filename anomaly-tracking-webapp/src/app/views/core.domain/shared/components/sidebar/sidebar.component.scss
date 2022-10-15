@@ -1,0 +1,27 @@
+.sidebar_menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #1b2c3f;
+    height: 100vh;
+  
+    .menu-list {
+      flex: 1;
+      justify-content: normal;
+    }
+  
+    .icon {
+      padding: 0 13px 0 0;
+      text-align: center;
+      vertical-align: middle;
+      color: lightgray;
+    }
+  
+    .label {
+      margin: 2;
+      color: lightgray;
+    }
+    
+  
+
+  }

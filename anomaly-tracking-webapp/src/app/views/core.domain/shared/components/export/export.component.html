@@ -1,0 +1,39 @@
+<button type="button"
+        class="btn-export"
+        [ngbPopover]="popContent"
+        container="body"
+        ngbTooltip="{{'app.shared.export'| translate}}">
+        <span class="material-icons mat-icon-size-18">
+          file_download
+          </span>
+</button>
+<ng-template #popContent>
+  <div class="menu-icon-grid text-center justify-content-between">
+    <div>
+      <button class="btn-icon bg-transparent border-0 btn-i"
+              *ngIf="exportService.exportConfig.xlsx"
+              (click)="toExcel()">
+              <i class="i-File-Excel text-success"></i>
+      </button>
+      <span class="font-weight-light"
+            style="font-size: small;">EXCEL</span>
+    </div>
+    <div>
+      <button class="btn-icon bg-transparent border-0 btn-i"
+              *ngIf="exportService.exportConfig.pdf"
+              (click)="toPdf()">
+        <i class="flaticon-export m-auto"></i>
+      </button>
+      <span class="mr-4">PDF</span>
+    </div>
+    <div>
+      <button class="btn-icon bg-transparent border-0 btn-i "
+              *ngIf="exportService.exportConfig.csv"
+              ngbPopover="CSV"
+              (click)="toCSV()">
+        <i class="i-File-CSV"></i>
+      </button>
+      <span class="t mb-5">CSV</span>
+    </div>
+  </div>
+</ng-template>

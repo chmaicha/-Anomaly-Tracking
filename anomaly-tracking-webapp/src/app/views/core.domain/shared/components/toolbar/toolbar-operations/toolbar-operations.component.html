@@ -1,0 +1,33 @@
+<div class="row flex-row-reverse toolbar-container">
+    <div class="col-lg-4 d-flex flex-row-reverse pr-0">
+        <div class="shadow-none ml-3 checkbox-position"
+            *ngIf="toolbarService.btnAddType != 'config' && toolbarService.isListEmpty && !toolbarService.unavailableSelection">
+                <label class="checkbox checkbox-info " ngbTooltip="{{'app.shared.selectall' | translate}}"
+                    container="body" [disableTooltip]="toolbarService.allSelected">
+                    <input type="checkbox" [(ngModel)]="toolbarService.allSelected" (change)="onAllSelected()">
+                    <span class="checkmark checkboxheadtable"></span>
+                </label>
+        </div>
+        <btn-add> </btn-add>
+        <div class="col-sm-8 filter__input ml-2 mr-2 pr-0 flex-search-bar">
+            <search-bar></search-bar>
+        </div>
+        <div class="btn-position ml-3" *ngIf="!toolbarService.unavailableExport">
+            <app-export *ngIf="toolbarService.isSelected"
+                [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'50ms', duration: '200ms'}}">
+            </app-export>
+        </div>
+        <div class="btn-position">
+            <app-delete-all [question]="toolbarService.deletionQuestion" [isToolbar]="true"
+                (delete)="toolbarService.deleteAllHandler()"
+                *ngIf="toolbarService.isSelected && !toolbarService.unavailableDelete"
+                [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'50ms', duration: '200ms'}}">
+            </app-delete-all>
+        </div>
+        <div class="col-lg-0 d-flex flex-row-reverse" *ngIf="toolbarService.isSelected && toolbarService.custumButtons?.length > 0">
+            <button  *ngFor="let btnConfig of toolbarService.custumButtons" class="btn-lightblue trigger btn-cercle ml-5"  [@animate]="{value:'*',params:{opacity:'0',delay:'100ms'}}" (click)="btnConfig.onButtonClick()" ngbTooltip= "{{btnConfig.buttonLabel}}">
+                <i [ngClass]="btnConfig.style ? btnConfig.style : 'none'"></i>
+            </button>
+        </div>
+    </div>
+</div>

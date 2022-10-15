@@ -1,0 +1,389 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true" style="min-width: 60px; background: #f3f3f3" autosize fixedTopGap="56">
+        <app-sidebar></app-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content [@onSideNavChange]="sidebarState">
+        <div class="SOM">
+            <div style="background-color: #edf2fb">
+                <app-header></app-header>
+                <mat-toolbar style="background-color: #edf2fb">
+                    <p class="px-9 mt-3 text-left capitalize text-2xl font-semibold">
+                        anomaly history
+                    </p>
+                </mat-toolbar>
+                <div class="rounded-md bg-white mx-4 px-3">
+                    <div class="grid gap-7 lg:grid-cols-2 mx-4 px-3">
+                        <mat-form-field appearance="standard">
+                            <mat-label>Filter by Reference</mat-label>
+                            <input matInput placeholder="Ex. name" />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="standard">
+                            <mat-label>Enter a date range</mat-label>
+                            <mat-date-range-input [rangePicker]="picker">
+                                <input matStartDate placeholder="Start date">
+                                <input matEndDate placeholder="End date">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <!-- RefProduct:string; ModelLabel:string; ProcessLabel:string; FaceLabel:string; PositionLabel:string; AnomalyTypeLabel:string; FirstNameUser:string; LastNameUser:String; Role:string; -->
+
+                <div class="contTable table-responsive m-4 bg-white px-3 py-3 rounded-md">
+                    <table class=" table-responsive mat-elevation-z4 px-4 grid-container w-full">
+                        <thead class="bg-white border-b">
+                            <tr class="mat-row">
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Reference
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Project
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Model
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Process
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Anomaly Type
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Face
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Position
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    User
+                                </th>
+
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Role
+                                </th>
+                                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                                    Declaration Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <!-- <tbody *ngFor="let anomalyDeclaration of anomalyDeclarations  let i = index"> -->
+                        <tbody>
+
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D2568910365</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    BMW U06</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3115647
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    FOAMING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Air bubble
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    A
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    12 1 6
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Ouassim Zmizem
+                                </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Supervisor
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-19
+                                </td>
+
+                            </tr>
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D4852484574</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    SEAT SE38</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3111943
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    ASSEMBLAGE
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Trace Leather
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    B
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    9
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Mohamed Ouahabi
+                                </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Operator
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-20
+                                </td>
+
+                            </tr>
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D6849325856</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    Renault</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3116077
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    SHEATHING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Curved Channel
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    B
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    9
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+
+                                    Souhail Haouari</td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Supervisor
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-15
+                                </td>
+
+                            </tr>
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D9635487625</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    SKODA</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    393
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    SHEATHING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Folds and wrinkles
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    A
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    7
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+
+                                    Ouassim Zmizem</td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Supervisor
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-14
+                                </td>
+
+                            </tr>
+
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D8965325654</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    FORD</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3080458
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    ASSEMBLAGE
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Deburring NOK
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    A
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    8
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+
+                                    Ali Haji</td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Operator
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-18
+                                </td>
+
+                            </tr>
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D8965325654</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    FORD</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3080458
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    ASSEMBLAGE
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Deburring NOK
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    A
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    8
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+
+                                    Ali Haji </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Operator
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-18
+                                </td>
+
+                            </tr>
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D6895324756</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    Daimler V4</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    956
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    FOAMING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Delamination
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    B
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    4
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    khalid Harrak
+                                </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Operator
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-17
+                                </td>
+
+                            </tr>
+
+
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D6895324756</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    Daimler V4</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    956
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    SHEATHING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Traces on foam
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    A
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    3
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Souhail Haouari
+                                </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Supervisor
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-22
+                                </td>
+
+                            </tr>
+                            <tr class="bg-gray-100 mat-row border-b">
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    D6895324756</td>
+                                <td class="px-6 py-3 whitespace-nowrap text-sm ">
+                                    Daimler V4</td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    956
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    FOAMING
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Delamination
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    B
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    11
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Mouhamed Jdaini
+                                </td>
+
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    Operator
+                                </td>
+                                <td class="text-sm text-gray-900 font-light px-6 py-3 whitespace-nowrap">
+                                    2022-06-17
+                                </td>
+
+                            </tr>
+
+
+                        </tbody>
+
+
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,64 @@
+<div class="section flex items-center justify-center">
+  <mat-card fxFlex="55% " class="h-75 ml-16 box mt-25">
+    <div class="log">
+      <mat-toolbar class="intro-header" flex="25">
+        <span class="logoITA">
+          <img
+            class="ITimg"
+            mat-card-image
+            src="./assets/images/logo itaccess mini.png"
+          />
+        </span>
+        <span>
+          <img class="BMimg" mat-card-image src="./assets/images/bm.png" />
+        </span>
+      </mat-toolbar>
+      <h1 class="text-zinc-800" fxLayoutAlign="center center">
+        <!-- <span class="mr-11 ">   <mat-icon style="color:#1b2c3f ;font-size:50px;  "   >qr_code_scanner</mat-icon></span> -->
+        <strong> Sign In</strong>
+      </h1>
+      <h5
+        class="text-zinc-700 font-sans text-base"
+        fxLayoutAlign="center center"
+        style="font-size: 2vw; padding-bottom: 3%"
+      >
+        and Start managing your anomalies
+      </h5>
+    </div>
+
+    <form fxLayoutAlign=" center center" fxLayout="column">
+      <mat-form-field appearance="outline" class="w-5/6">
+        <mat-label class="text-zinc-500">Login</mat-label>
+        <input  [(ngModel)]="user.Code" #box matInput name="login" />
+      </mat-form-field>
+      <p *ngIf="WrongCodeMessage" [ngStyle]="{'color':'red'}"> Invalid Code</p>
+
+      <mat-form-field *ngIf="IsSupervisor"
+        appearance="outline"
+        class="inline-block w-5/6 align-middle"
+      >
+        <mat-label  class="text-zinc-500"> Password </mat-label>
+        <input
+          class="align-middle"
+          matInput
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="user.Password"
+        />
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">
+          {{ showPassword ? "visibility_off" : "visibility" }}
+        </mat-icon>
+      </mat-form-field>
+      <p *ngIf="WrongPasswordMessage" [ngStyle]="{'color':'red'}"> Invalid Password</p>
+
+      <button
+        type="submit"
+        class="w-5/6 px-6 py-2.5 text-xl text-white font-medium leading-tight uppercase rounded-md shadow-md hover:bg-sky-700 hover:shadow-lg focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-sky-700 active:shadow-lg transition duration-150 bg-sky-900 ease-in-out"
+        routerLinkActive="active-list-item"
+        (click)="login()"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>

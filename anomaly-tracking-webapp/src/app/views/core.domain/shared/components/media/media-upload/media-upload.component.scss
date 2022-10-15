@@ -1,0 +1,72 @@
+.figure {
+  border-radius: 100%;
+  display: flex;
+  flex: 0 0 150px;
+  width: 200px;
+  justify-content: center;
+  position: relative;
+  height: 200px;
+  margin: auto;
+}
+
+.image {
+  display: inline-block;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+.overlay {
+  align-items: center;
+  border-radius: 50%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: opacity 0.25s;
+  z-index: 1;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 51%, rgba(108, 116, 123, 1) 100%);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.icon-position {
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.delete-position {
+  position: absolute;
+  right: 15px;
+  bottom: 20px;
+  opacity: 0;
+  transition: opacity 0.25s;
+  cursor: pointer;
+  z-index: 2;
+}
+
+figure:hover .overlay {
+  opacity: 0.3;
+}
+
+figure:hover .icon-position {
+  opacity: 1;
+}
+
+figure:hover .delete-position {
+  opacity: 1;
+}
+
+.bg-light-blue {
+  background-color: lighten($color: #bfcfff, $amount: 8);
+}

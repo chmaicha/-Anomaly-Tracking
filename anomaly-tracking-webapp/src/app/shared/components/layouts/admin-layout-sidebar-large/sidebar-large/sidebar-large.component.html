@@ -1,0 +1,26 @@
+<div [ngClass]="{open: navService.sidebarState.sidenavOpen}" class="sidebar-left rtl-ps-none"
+  [perfectScrollbar]="{suppressScrollX: true}">
+  <!--    <div>
+        <img src="" alt="">
+    </div> -->
+  <div class="navigation-left">
+
+    <div *ngFor="let category of categories">
+      <div class="category-label" *ngIf="category?.Order != 100">
+        <span>{{category.Label}}</span>
+      </div>
+
+        <span [ngClass]="{active: item.active}" class="nav-item lvl1" (click)="onClickChangeActiveFlag(item)"
+          *ngFor="let item of category.Items">
+          <div class="nav-item-hold" routerLink="{{item.Url}}" (click)="closeChildNav()">
+            <span class="material-icons sizeicon">{{item.Icon}}</span>
+            <span class="nav-text ml-1">{{item.LvfAppModuleLabel|translate}}</span>
+          </div>
+          <div class="triangle"></div>
+        </span>
+
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="{open: navService.sidebarState.childnavOpen}" class="sidebar-overlay" (click)="closeChildNav()"></div>

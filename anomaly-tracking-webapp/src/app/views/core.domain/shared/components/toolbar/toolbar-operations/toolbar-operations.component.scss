@@ -1,0 +1,52 @@
+.btn-lightblue {
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid #F0F2F5;
+    height: 37px;
+    width: 37px;
+}
+
+.trigger {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.trigger:hover {
+    transition: box-shadow 0.45s;
+}
+
+.checkboxheadtable {
+    background-color: transparent;
+    border: 2px solid #0033A0;
+    border-radius: 15% !important;
+}
+
+.i-Filter-2 {
+    color: black;
+    font-weight: 500;
+}
+
+.btn-position {
+    position: relative;
+    top: 0.5rem;
+}
+
+.checkbox-position {
+    position: relative;
+    top: 0.6rem;
+}
+
+.delete-position {
+    position: relative;
+    max-height: 0px;
+    left: -3.8rem;
+    bottom: 0.1rem;
+}
+
+.flex-search-bar {
+    flex-grow: 3;
+}
+
+.toolbar-container {
+    justify-content: flex-start;
+}

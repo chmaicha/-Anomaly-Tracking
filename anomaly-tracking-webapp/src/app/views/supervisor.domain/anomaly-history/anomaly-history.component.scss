@@ -1,0 +1,44 @@
+.grid-container {
+  height: 100%;
+}
+table {
+  width: 100%;
+}
+
+.mat-sidenav-content {
+  background-color: #edf2fb;
+}
+.mat-row:nth-child(even) {
+  background-color: #fafafa;
+}
+.mat-row:nth-child(odd) {
+  background-color: white;
+}
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+mat-icon {
+  font-size: 50px;
+}
+.G {
+  background-color: white;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}

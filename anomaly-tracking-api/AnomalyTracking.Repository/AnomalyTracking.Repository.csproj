@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\Litigeo.Domain\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\Litigeo.Domain\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8C6CCB0D-0D18-4CE0-A2B3-661D1699F586}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnomalyTracking.Repository</RootNamespace>
+    <AssemblyName>AnomalyTracking.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Local|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Local\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Beta|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Beta\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Int|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Int\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Prod|AnyCPU'">
+    <OutputPath>bin\Prod\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnomalyDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyDeclarationDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyTracking.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnomalyTracking.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyTracking.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyTracking.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AnomalyTracking.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AnomalyTypeDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CavityDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientAddressDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ClientAdressDb.cs" />
+    <Compile Include="FaceDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LvfUserRoleDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoldDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork\AnomalyTrackingUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\IAnomalyTrackingDbContext.cs" />
+    <Compile Include="UnitOfWork\IAnomalyTrackingUnitOfWork.cs" />
+    <Compile Include="UserDb.cs">
+      <DependentUpon>AnomalyTracking.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnomalyTracking.Model\AnomalyTracking.Model.csproj">
+      <Project>{CB31C1C8-E1FB-478B-94ED-3506B5AA3231}</Project>
+      <Name>AnomalyTracking.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shared.Core.Repository\Shared.Core.Repository.csproj">
+      <Project>{171d3767-1c25-4c45-a530-81a9355420ba}</Project>
+      <Name>Shared.Core.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AnomalyTracking.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AnomalyTracking.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AnomalyTracking.edmx.diagram">
+      <DependentUpon>AnomalyTracking.edmx</DependentUpon>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AnomalyTracking.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AnomalyTracking.edmx</DependentUpon>
+      <LastGenOutput>AnomalyTracking.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AnomalyTracking.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AnomalyTracking.edmx</DependentUpon>
+      <LastGenOutput>AnomalyTracking.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+</Project>

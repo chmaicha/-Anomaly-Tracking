@@ -1,0 +1,76 @@
+<div class="search-ui"
+	 perfectScrollbar
+	 [@animate]="{value:'*',params:{y:'120px',opacity:'0',delay:'100ms', duration: '400ms'}}">
+	<div class="search-header mt-4 flex-center-between">
+		<div class="breadcrumb">
+			<h1>{{'app.uimodule.title.listdocument'| translate }} </h1>
+		</div>
+		<button class="btn btn-icon bg-transparent mb-3"
+				(click)="mediaDownloadService.folderOpen = false">
+			<i class="i-Close-Window text-22 text-muted"></i>
+		</button>
+	</div>
+	<div class="separator-bread border-top"></div>
+	<!-- 	<input type="text" placeholder="Type here" class="search-input" [formControl]="searchCtrl" autofocus> -->
+	<toolbar (action)="fileInput.click()"></toolbar>
+	<div class="form-group">
+		<input type="file"
+			   (change)="onUploadFile($event)"
+			   style="display: none;"
+			   #fileInput
+			   id="fileInput" />
+	</div>
+	<div class="row"
+		 *ngIf="mediaDownloadService.documents">
+		<div class="col-lg-3 col-md-6 col-sm-6"
+			 *ngFor="let document of mediaDownloadService.documents | paginate: { itemsPerPage: mediaDownloadService.pageSize, currentPage: mediaDownloadService.page, totalItems : mediaDownloadService.totalCount }">
+			<div class="card">
+				<div class="card-body">
+					<div class="checkbox-position">
+						<label class="checkbox checkbox-outline-light float-right">
+							<input type="checkbox"
+								   [(ngModel)]="document.Selected"
+								   (change)="onItemSelected()">
+							<span></span>
+							<span class="checkmark"></span>
+						</label>
+					</div>
+					<div class="d-flex align-items-center border-bottom-dotted-dim">
+						<i *ngIf="mediaIconSetter(document.FileOriginalName)==''" class="i-File icon-size"></i>
+						<img *ngIf="mediaIconSetter(document.FileOriginalName)!=''" class="mediaicon-size" [src]="mediaIconSetter(document.FileOriginalName)" alt="">
+						<div class="flex-grow-1 ml-3">
+							<p class="text-truncate"
+							   ngbTooltip="{{document.FileOriginalName}}"
+							   container="body"><a target="_top"
+								   href="{{mediaDestFilePath}}/{{document.FileOriginalName}}"
+								   download> {{document.FileOriginalName}} </a></p>
+							<p class="p-date"> {{"app.file.lastupdate" | translate}} :
+								{{document.LastModificationDateString}}</p>
+						</div>
+						<div>
+							<button class="btn btn-icon btn-info btn-cercle btn-position">
+								<a target="_blank"
+								   href="{{mediaDestFilePath}}/{{document.FileOriginalName}}"
+								   download><i class="i-Download1 align-self-center icon-style"
+									   ngbPopover=" {{'app.file.download' | translate}}"
+									   triggers="mouseenter:mouseleave"
+									   placement="left"></i>
+								</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="col-md-12 mt-3"
+			 *ngIf="mediaDownloadService.documents?.length && mediaDownloadService.totalCount > mediaDownloadService.pageSize">
+			<pagination-controls (pageChange)="onGetDocuments($event)"
+								 previousLabel=""
+								 nextLabel="">
+			</pagination-controls>
+		</div>
+	</footer>
+	<!-- PAGINATION CONTROL -->
+</div>

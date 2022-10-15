@@ -1,0 +1,110 @@
+::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: transparent!important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgb(30, 30, 102)!important;
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: rgb(30, 30, 102)!important;
+}
+
+// .mat-stepper-horizontal {
+//     margin-top: 8px;
+// }
+// .mat-form-field {
+//     margin-top: 16px;
+// }
+.mat-sidenav-container {
+    height: 100%;
+}
+
+.mat-sidenav-content {
+    background-color: #edf2fb;
+}
+
+.mat-chip {
+    background-color: #e3f2fd;
+}
+
+
+
+section {
+    text-align: center;
+    height: 40vh;
+    width: 40vh;
+    background: #fdfdfd;
+    button {
+        border-radius: 50%;
+        height: 60px;
+        width: 60px;
+        margin-bottom: 20px;
+        &disabled {
+            cursor: no-drop;
+        }
+    }
+    .data {
+        background: antiquewhite;
+        border-radius: 5px;
+    }
+}
+.mat-chip{
+    background-color: #e3f2fd;
+}
+.twelve {
+    left: calc(100% - 165px);
+    transform: translateX(204px) !important;
+    transform: translateY(-40px) !important;
+  }
+.one {
+  left: calc(100% - 180px);
+  transform: translateX(120px) !important;
+  transform: translateY(-22px) !important;
+}
+  .two {
+    top: 27px;
+    left: calc(100% - 71px);
+    transform: translateX(-100px) !important;
+  }
+  .three {
+    top: 85px;
+    transform: translate(230px) !important;
+  }
+.nine {
+  top: 120px;
+  transform: translate(-190px, 7px) !important;
+}
+
+.five{
+  top: 250px;
+  transform: translate(180px, -7px) !important;
+}
+.seven{
+  top: 260px;
+  transform: translate(-45px, -7px) !important;
+}
+.eleven {
+  top: 10px;
+  transform: translate(-200px, 7px) !important;
+}
+.four {
+  top: 190px;
+  left: calc(100% - 152px);
+  transform: translateX(100px) !important;
+}
+.eight {
+  top: 205px;
+  right: calc(100% - 15px);
+  transform: translateX(155px) !important;
+  
+}
+.ten {
+  top: 67px;
+  right: calc(100% - 71px);
+  transform: translateX(30px) !important;
+}
+.six{
+      top: 260px;
+      transform: translate(67px, 7px) !important;
+    }

@@ -1,0 +1,77 @@
+.intro-header{
+    height: 10vh !important ;
+     background-color: white;
+     width: -80%  ;
+
+   // background-color:  #b39ddb;
+}
+.title {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+  mat-icon{
+    font-size: 40px;
+    color:#505050
+
+  }
+  .bm{
+    height: 50px;
+    width: 50;
+  }
+ .menubtn {
+  position:absolute ;
+  right: 8vh;
+  top: 1vh;
+ }
+ .iconebtn {
+  position:absolute ;
+  right: 50vh;
+  top: 1.5vh;
+ }
+ .BMimg {
+  height: 68px;
+  width: 68px;
+  position: static;
+
+  left:25vh;
+  top: 0.5vh;
+}
+
+.username{
+  position:absolute ;
+  right: 38vh;
+  top: 3vh;
+  font-size:medium;
+  font-weight:500;
+
+}
+.lougoutbutton{
+
+  position: absolute;
+  color: black;
+  right: 25vh;
+  top: 3vh;
+  font-weight:500;
+  text-decoration: underline;
+
+}
+
+.lougoutbutton:hover{
+
+  color: blue;
+  .logoutbtn{
+    color: blue;
+  }
+}
+
+.logoutbtn{
+  position: absolute;
+  color: black;
+  font-size: 20px;
+}
+
+.pipe{
+  position: absolute ;
+  right: 9vh;
+
+}

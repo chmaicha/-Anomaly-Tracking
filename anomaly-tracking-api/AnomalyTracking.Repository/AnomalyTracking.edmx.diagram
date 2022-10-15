@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="39e2fbe5e63b4034bc55a3a4af2d2eaf" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.AnomalyAnomalyTypeDb" Width="1.5" PointX="5.25" PointY="6.75" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.EmplacementDb" Width="1.5" PointX="1.5" PointY="29.5" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyAnomalyTypeDb_Anomaly_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyAnomalyTypeDb_AnomalyType_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDb_Emplacement_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDb_Product_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Mold_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_EmplacementDb_Face_Id" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.AnomalyDb" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.AnomalyDeclarationDb" Width="1.5" PointX="7.5" PointY="4" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.AnomalyTypeDb" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.CavityDb" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.ClientAddressDb" Width="1.5" PointX="1.5" PointY="11.375" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.ClientDb" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.FaceDb" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.MoldDb" Width="1.5" PointX="2.25" PointY="1" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.ProcessDb" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.ProductDb" Width="1.5" PointX="9.75" PointY="2.25" />
+        <EntityTypeShape EntityType="AnomalyTrackingDbModel.UserDb" Width="1.5" PointX="5.25" PointY="4.875" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDb_AnomalyType_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Anomaly_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_FaceDb_AnomalydB_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Cavity_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Process_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_User_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_AnomalyTypeDb_ProcessDb_ProcessId" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_CavityDb_MolddB_Id" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_ClientDb_ClientAddressDb_AddressId" />
+        <AssociationConnector Association="AnomalyTrackingDbModel.FK_MoldDb_ClientdB_Id" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

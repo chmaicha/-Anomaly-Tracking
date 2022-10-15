@@ -1,0 +1,21 @@
+<div class="stepper">
+    <div class="">
+        <button class="btn btn-icon stepper__btn"
+                (click)="down()"
+                [disabled]="disableStepper()"> <i class="i-Arrow-Left"></i></button>
+    </div>
+    <div class="ml-2">
+        <input hidden
+               type="text"
+               name="value"
+               [(ngModel)]="value"
+               class="d-none"
+               required />
+        <span class="stepper__value">{{value}}</span>
+    </div>
+    <div class="ml-2">
+        <button class="btn btn-icon stepper__btn "
+                (click)="up()"
+                [disabled]="disableStepper()"> <i class="i-Arrow-Right"></i> </button>
+    </div>
+</div>

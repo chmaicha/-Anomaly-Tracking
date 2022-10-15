@@ -1,0 +1,101 @@
+<div class="main-header shadow-none">
+    <div class="header-logo-container">
+        <div class="menu-toggle pt-1 pl-4 pr-1 pb-2" (click)="toggelSidebar()">
+            <span class="material-icons md-18">menu</span>
+        </div>
+        <div class="logo header-logo">
+            <img src="./assets/images/{{logo}}" alt="logo">
+            <span class="app-header-name">Stockage vehicule</span>
+        </div>
+    </div>
+    <div class="header-part-right">
+        <div class="search-bar">
+            <input type="text" placeholder="{{'app.shared.search' | translate}}" class="placeholder-style">
+            <span class="material-icons darkblue md-24 search-icon search-glass">search</span>
+        </div>
+        <div class="line"></div>
+        <div ngbDropdown [placement]="'bottom-right'" autoClose="outside">
+            <div ngbDropdownToggle class="dropdown-toggle">
+                <span class="material-icons darkblue md-24 notifsicon">
+                    <span class="badge rounded-circle bell-alert"></span>
+                    notifications
+                </span>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="notifDropdown" class="hnotifdrop border-top-0">
+                <button class="dropdown-item">
+                    <span class="notifdroptitle">Facturation - 12/12/2021 - 12h00</span>
+                    <p class="mt-1">La facture 579307564 arrive à échéance</p>
+                </button>
+                <button class="dropdown-item">
+                    <span class="notifdroptitle">Validation - 10/12/2021 - 12h30</span>
+                    <p class="mt-1">Un prix est à valider</p>
+                </button>
+                <button class="dropdown-item">
+                    <span class="notifdroptitle">Annonce - 02/12/2021 - 12h00</span>
+                    <p class="mt-1">Une annonce de sortie doit être validée</p>
+                </button>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="multipleappstoggle">
+            <div ngbDropdown [placement]="'bottom-right'" autoClose="true">
+                <div ngbDropdownToggle class="dropdown-toggle">
+                    <span class="material-icons darkblue md-24 multipleappsicon"><span
+                            class="badge rounded-circle app-alert">&nbsp;</span>apps</span>
+                </div>
+                <div ngbDropdownMenu aria-labelledby="appDropdown" class="happdrop border-top-0">
+                    <div class="btn-group">
+                        <button class="dropdown-item appbuttons mr-1 mb-1 mt-2"><span
+                                class="material-icons darkblue md-24 appicons">campaign</span>Litigeo</button>
+                        <button class="dropdown-item appbuttons ml-1 mb-1 mt-2"><span
+                                class="material-icons darkblue md-24 appicons">dns</span>Data Aggregator</button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="dropdown-item appbuttons mr-1 mt-1 mb-1"><span
+                                class="material-icons darkblue md-24 appicons">card_giftcard</span>Carte de
+                            voeux</button>
+                        <button class="dropdown-item appbuttons ml-1 mt-1 mb-1"><span
+                                class="material-icons darkblue md-24 appicons">local_shipping</span>ERP Mobile</button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="dropdown-item appbuttons mr-1 mt-1 mb-3">
+                            <span class="material-icons darkblue md-24 appicons">directions_car</span>
+                            Stockage
+                            véhicules
+                        </button>
+                        <button class="dropdown-item appbuttons ml-1 mt-1 mb-3">
+                            <span class="material-icons darkblue md-24 appicons">trending_up</span>Taux de
+                            livraison
+                        </button>
+                    </div>
+                    <div class="separator-bread border-top"></div>
+                    <button class="dropdown-item globalparams" routerLink="/global/setting">
+                        <span class="material-icons md-16 paramsicon mr-3">build</span>
+                        <span>{{ 'app.shared.globalparams' | translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="userprofilcircle mr-3">
+            <div class="iconpersoncentered"><span class="material-icons md-18">person_outline</span></div>
+        </div>
+        <div>
+            <span class="user-name">{{contextService.data.User.FirstName}} {{contextService.data.User.LastName}}</span>
+            <footer class="user-role">{{contextService.data.User.userJobLabel | translate}}</footer>
+        </div>
+        <div ngbDropdown [placement]="'bottom-right'" class="user">
+            <div ngbDropdownToggle class="dropdown-toggle">
+                <span class="material-icons greylight md-24">expand_more</span>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="userDropdown" class="huserdrop border-top-0">
+                <button class="dropdown-item" routerLink="/user/setting">{{'app.uimodule.title.usersetting' |
+                    translate}}</button>
+                <button class="dropdown-item">{{'app.shared.appparameters' | translate}}</button>
+                <button class="dropdown-item" routerLink="/application/log/list">{{'app.application.loglist' |
+                    translate}}</button>
+                <button class="btn deconnexion" (click)="signout()">{{'app.shared.signout' | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

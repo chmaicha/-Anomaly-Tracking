@@ -1,0 +1,28 @@
+<button type="button" *ngIf="isToolbar" class="delete-btn align-content-center" ngbTooltip=" {{'app.shared.delete' | translate}}" aria-label="Close"
+    type="submit" (click)="comfirm()">
+    <span class="material-icons mat-icon-size-18" aria-hidden="true"
+        triggers="mouseenter:mouseleave">delete</span>
+</button>
+<button type="button" *ngIf="!isToolbar" class="trash-btn btn" aria-label="Close" type="submit" (click)="comfirm()"  ngbTooltip=" {{'app.shared.delete' | translate}}">
+    <span class="material-icons mat-icon-size-18" aria-hidden="true"
+        triggers="mouseenter:mouseleave">delete</span>
+</button>
+
+<ng-template #deleteConfirmModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">{{'app.alert.confirm'| translate }}</h4>
+        <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+            ngbTooltip=" {{'app.shared.cancel' | translate}}" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>{{question | translate}}</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-rounded"
+            (click)="modal.dismiss('cancel')">{{'app.shared.cancel'| translate }}</button>
+        <button type="button" ngbAutofocus class="btn btn-wide btn-danger btn-rounded"
+            (click)="modal.close('Ok')">{{'app.shared.delete'| translate }}</button>
+    </div>
+</ng-template>

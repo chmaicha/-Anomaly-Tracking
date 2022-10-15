@@ -1,0 +1,27 @@
+{
+    "app.AnomalyType.manage": "Manage AnomalyType",
+    "app.lvfuserrole.supervisor": "Supervisor",
+    "app.lvfuserrole.operator": "Operator",
+    "app.shared.actions": "Actions",
+    "app.shared.cancel": "Cancel",
+    "app.shared.code": "Code",
+    "app.shared.done": "Done",
+    "app.shared.firstname": "First Name",
+    "app.shared.lastmodificationdate": "Last modification date",
+    "app.shared.lastname": "Name",
+    "app.user.userrole": "Role",
+    "app.shared.process": "Process",
+    "app.user.creation": "Create User",
+    "app.user.update": "Update User",
+
+    "app.process.creation": "Create Process",
+    "app.process.manage": "Manage Process",
+    "app.process.add": "Add Process",
+    "app.project.manage": "Manage projects",
+    "app.project.add": "Add Project",
+    "app.shared.project": "Project",
+    "app.project.creation": "Create Project",
+    "app.project.molds.manage" : "Manage Molds of project",
+    "app.mold.add" : "Add Mold",
+    "app.process.anomalyType.manage": "Manage anomalyTypes of process"
+}

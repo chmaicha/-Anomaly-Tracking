@@ -1,0 +1,37 @@
+<mat-toolbar class="intro-header ">
+  <span >
+
+      <!-- <span  >
+        <img class="BMimg" mat-card-image src="./assets/images/bm.png" />
+      </span> -->
+    </span>
+
+    <span class="title"></span>
+
+  </mat-toolbar>
+
+  <mat-icon class=" iconebtn " >account_circle</mat-icon>
+
+
+            <p class="username"> {{CurrentUsername}}</p>
+
+      <!-- <button class=" menubtn "mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon style="font-size: 30px;" ><span class="material-icons">expand_more</span></mat-icon>
+      </button> -->
+      <!-- <mat-menu #menu="matMenu">
+         <button mat-menu-item  routerLinkActive="active-list-item" routerLink="/"  (click)="logout()">
+          <mat-icon style="font-size: 30px;">logout</mat-icon>
+          <span >LogOut</span>
+        </button>
+      </mat-menu> -->
+
+              <a  class="lougoutbutton" [routerLink]="['/']" (click)="logout()" routerLinkActive="router-link-active" >
+
+                <span class="pipe ">
+
+                  <mat-icon class="logoutbtn " >logout</mat-icon>
+
+                </span>
+                Logout</a>
+
+

@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AnomalyTrackingDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnomalyDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnomalyTypeId" Type="int" Nullable="false" />
+          <Property Name="FaceId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnomalyDeclarationDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+          <Property Name="CavityId" Type="int" Nullable="false" />
+          <Property Name="AnomalyId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="AnomalyTypeDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="250" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="ProcessId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CavityDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="MoldId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientAddressDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="FurtherInformation" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ClientDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FaceDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnomalyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LvfUserRoleDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoldDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ref" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="10" />
+          <Property Name="LvfUserRole" Type="int" Nullable="false" />
+          <Property Name="LastModificationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AnomalyDb_AnomalyType_Id">
+          <End Role="AnomalyTypeDb" Type="Self.AnomalyTypeDb" Multiplicity="1" />
+          <End Role="AnomalyDb" Type="Self.AnomalyDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyTypeDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDb">
+              <PropertyRef Name="AnomalyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Anomaly_Id">
+          <End Role="AnomalyDb" Type="Self.AnomalyDb" Multiplicity="0..1" />
+          <End Role="AnomalyDeclarationDb" Type="Self.AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="AnomalyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Cavity_Id">
+          <End Role="CavityDb" Type="Self.CavityDb" Multiplicity="1" />
+          <End Role="AnomalyDeclarationDb" Type="Self.AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CavityDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="CavityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Process_Id">
+          <End Role="ProcessDb" Type="Self.ProcessDb" Multiplicity="1" />
+          <End Role="AnomalyDeclarationDb" Type="Self.AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_User_Id">
+          <End Role="UserDb" Type="Self.UserDb" Multiplicity="0..1" />
+          <End Role="AnomalyDeclarationDb" Type="Self.AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyTypeDb_ProcessDb_ProcessId">
+          <End Role="ProcessDb" Type="Self.ProcessDb" Multiplicity="1" />
+          <End Role="AnomalyTypeDb" Type="Self.AnomalyTypeDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyTypeDb">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CavityDb_MolddB_Id">
+          <End Role="MoldDb" Type="Self.MoldDb" Multiplicity="1" />
+          <End Role="CavityDb" Type="Self.CavityDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoldDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CavityDb">
+              <PropertyRef Name="MoldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientDb_ClientAddressDb_AddressId">
+          <End Role="ClientAddressDb" Type="Self.ClientAddressDb" Multiplicity="0..1" />
+          <End Role="ClientDb" Type="Self.ClientDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientAddressDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientDb">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FaceDb_AnomalydB_Id">
+          <End Role="AnomalyDb" Type="Self.AnomalyDb" Multiplicity="1" />
+          <End Role="FaceDb" Type="Self.FaceDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FaceDb">
+              <PropertyRef Name="AnomalyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoldDb_ClientdB_Id">
+          <End Role="ClientDb" Type="Self.ClientDb" Multiplicity="1" />
+          <End Role="MoldDb" Type="Self.MoldDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MoldDb">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDb_LvfUserRole_Id">
+          <End Role="LvfUserRoleDb" Type="Self.LvfUserRoleDb" Multiplicity="1" />
+          <End Role="UserDb" Type="Self.UserDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LvfUserRoleDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDb">
+              <PropertyRef Name="LvfUserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnomalyTrackingDbModelStoreContainer">
+          <EntitySet Name="AnomalyDb" EntityType="Self.AnomalyDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnomalyDeclarationDb" EntityType="Self.AnomalyDeclarationDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnomalyTypeDb" EntityType="Self.AnomalyTypeDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CavityDb" EntityType="Self.CavityDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientAddressDb" EntityType="Self.ClientAddressDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientDb" EntityType="Self.ClientDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FaceDb" EntityType="Self.FaceDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LvfUserRoleDb" EntityType="Self.LvfUserRoleDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MoldDb" EntityType="Self.MoldDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessDb" EntityType="Self.ProcessDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDb" EntityType="Self.ProductDb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDb" EntityType="Self.UserDb" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AnomalyDb_AnomalyType_Id" Association="Self.FK_AnomalyDb_AnomalyType_Id">
+            <End Role="AnomalyTypeDb" EntitySet="AnomalyTypeDb" />
+            <End Role="AnomalyDb" EntitySet="AnomalyDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Anomaly_Id" Association="Self.FK_AnomalyDeclarationDb_Anomaly_Id">
+            <End Role="AnomalyDb" EntitySet="AnomalyDb" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Cavity_Id" Association="Self.FK_AnomalyDeclarationDb_Cavity_Id">
+            <End Role="CavityDb" EntitySet="CavityDb" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Process_Id" Association="Self.FK_AnomalyDeclarationDb_Process_Id">
+            <End Role="ProcessDb" EntitySet="ProcessDb" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_User_Id" Association="Self.FK_AnomalyDeclarationDb_User_Id">
+            <End Role="UserDb" EntitySet="UserDb" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyTypeDb_ProcessDb_ProcessId" Association="Self.FK_AnomalyTypeDb_ProcessDb_ProcessId">
+            <End Role="ProcessDb" EntitySet="ProcessDb" />
+            <End Role="AnomalyTypeDb" EntitySet="AnomalyTypeDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CavityDb_MolddB_Id" Association="Self.FK_CavityDb_MolddB_Id">
+            <End Role="MoldDb" EntitySet="MoldDb" />
+            <End Role="CavityDb" EntitySet="CavityDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientDb_ClientAddressDb_AddressId" Association="Self.FK_ClientDb_ClientAddressDb_AddressId">
+            <End Role="ClientAddressDb" EntitySet="ClientAddressDb" />
+            <End Role="ClientDb" EntitySet="ClientDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FaceDb_AnomalydB_Id" Association="Self.FK_FaceDb_AnomalydB_Id">
+            <End Role="AnomalyDb" EntitySet="AnomalyDb" />
+            <End Role="FaceDb" EntitySet="FaceDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoldDb_ClientdB_Id" Association="Self.FK_MoldDb_ClientdB_Id">
+            <End Role="ClientDb" EntitySet="ClientDb" />
+            <End Role="MoldDb" EntitySet="MoldDb" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDb_LvfUserRole_Id" Association="Self.FK_UserDb_LvfUserRole_Id">
+            <End Role="LvfUserRoleDb" EntitySet="LvfUserRoleDb" />
+            <End Role="UserDb" EntitySet="UserDb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AnomalyTrackingDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="AnomalyTrackingDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LvfUserRoleDbs" EntityType="AnomalyTrackingDbModel.LvfUserRoleDb" />
+          <EntitySet Name="AnomalyDbs" EntityType="AnomalyTrackingDbModel.AnomalyDb" />
+          <EntitySet Name="AnomalyDeclarationDbs" EntityType="AnomalyTrackingDbModel.AnomalyDeclarationDb" />
+          <EntitySet Name="AnomalyTypeDbs" EntityType="AnomalyTrackingDbModel.AnomalyTypeDb" />
+          <EntitySet Name="CavityDbs" EntityType="AnomalyTrackingDbModel.CavityDb" />
+          <EntitySet Name="ClientAddressDbs" EntityType="AnomalyTrackingDbModel.ClientAddressDb" />
+          <EntitySet Name="ClientDbs" EntityType="AnomalyTrackingDbModel.ClientDb" />
+          <EntitySet Name="FaceDbs" EntityType="AnomalyTrackingDbModel.FaceDb" />
+          <EntitySet Name="MoldDbs" EntityType="AnomalyTrackingDbModel.MoldDb" />
+          <EntitySet Name="ProcessDbs" EntityType="AnomalyTrackingDbModel.ProcessDb" />
+          <EntitySet Name="ProductDbs" EntityType="AnomalyTrackingDbModel.ProductDb" />
+          <EntitySet Name="UserDbs" EntityType="AnomalyTrackingDbModel.UserDb" />
+          <AssociationSet Name="FK_AnomalyDb_AnomalyType_Id" Association="AnomalyTrackingDbModel.FK_AnomalyDb_AnomalyType_Id">
+            <End Role="AnomalyTypeDb" EntitySet="AnomalyTypeDbs" />
+            <End Role="AnomalyDb" EntitySet="AnomalyDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Anomaly_Id" Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Anomaly_Id">
+            <End Role="AnomalyDb" EntitySet="AnomalyDbs" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FaceDb_AnomalydB_Id" Association="AnomalyTrackingDbModel.FK_FaceDb_AnomalydB_Id">
+            <End Role="AnomalyDb" EntitySet="AnomalyDbs" />
+            <End Role="FaceDb" EntitySet="FaceDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Cavity_Id" Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Cavity_Id">
+            <End Role="CavityDb" EntitySet="CavityDbs" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_Process_Id" Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Process_Id">
+            <End Role="ProcessDb" EntitySet="ProcessDbs" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyDeclarationDb_User_Id" Association="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_User_Id">
+            <End Role="UserDb" EntitySet="UserDbs" />
+            <End Role="AnomalyDeclarationDb" EntitySet="AnomalyDeclarationDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyTypeDb_ProcessDb_ProcessId" Association="AnomalyTrackingDbModel.FK_AnomalyTypeDb_ProcessDb_ProcessId">
+            <End Role="ProcessDb" EntitySet="ProcessDbs" />
+            <End Role="AnomalyTypeDb" EntitySet="AnomalyTypeDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CavityDb_MolddB_Id" Association="AnomalyTrackingDbModel.FK_CavityDb_MolddB_Id">
+            <End Role="MoldDb" EntitySet="MoldDbs" />
+            <End Role="CavityDb" EntitySet="CavityDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientDb_ClientAddressDb_AddressId" Association="AnomalyTrackingDbModel.FK_ClientDb_ClientAddressDb_AddressId">
+            <End Role="ClientAddressDb" EntitySet="ClientAddressDbs" />
+            <End Role="ClientDb" EntitySet="ClientDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MoldDb_ClientdB_Id" Association="AnomalyTrackingDbModel.FK_MoldDb_ClientdB_Id">
+            <End Role="ClientDb" EntitySet="ClientDbs" />
+            <End Role="MoldDb" EntitySet="MoldDbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDb_LvfUserRole_Id" Association="AnomalyTrackingDbModel.FK_UserDb_LvfUserRole_Id">
+            <End Role="LvfUserRoleDb" EntitySet="LvfUserRoleDbs" />
+            <End Role="UserDb" EntitySet="UserDbs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EnumType Name="LvfTaskPriority" a:ExternalTypeName="AnomalyTracking.Enums.Tasks.LvfTaskPriority" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="LvfTaskType" a:ExternalTypeName="AnomalyTracking.Enums.Tasks.LvfTaskType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="LvfUserRoleDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserDbs" Relationship="AnomalyTrackingDbModel.FK_UserDb_LvfUserRole_Id" FromRole="LvfUserRoleDb" ToRole="UserDb" />
+        </EntityType>
+        <EntityType Name="AnomalyDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnomalyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FaceId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnomalyTypeDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyDb_AnomalyType_Id" FromRole="AnomalyDb" ToRole="AnomalyTypeDb" />
+          <NavigationProperty Name="AnomalyDeclarationDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Anomaly_Id" FromRole="AnomalyDb" ToRole="AnomalyDeclarationDb" />
+          <NavigationProperty Name="FaceDbs" Relationship="AnomalyTrackingDbModel.FK_FaceDb_AnomalydB_Id" FromRole="AnomalyDb" ToRole="FaceDb" />
+        </EntityType>
+        <EntityType Name="AnomalyDeclarationDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <Property Name="CavityId" Type="Int32" Nullable="false" />
+          <Property Name="AnomalyId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="AnomalyDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Anomaly_Id" FromRole="AnomalyDeclarationDb" ToRole="AnomalyDb" />
+          <NavigationProperty Name="CavityDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Cavity_Id" FromRole="AnomalyDeclarationDb" ToRole="CavityDb" />
+          <NavigationProperty Name="ProcessDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Process_Id" FromRole="AnomalyDeclarationDb" ToRole="ProcessDb" />
+          <NavigationProperty Name="UserDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_User_Id" FromRole="AnomalyDeclarationDb" ToRole="UserDb" />
+        </EntityType>
+        <EntityType Name="AnomalyTypeDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProcessId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnomalyDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyDb_AnomalyType_Id" FromRole="AnomalyTypeDb" ToRole="AnomalyDb" />
+          <NavigationProperty Name="ProcessDb" Relationship="AnomalyTrackingDbModel.FK_AnomalyTypeDb_ProcessDb_ProcessId" FromRole="AnomalyTypeDb" ToRole="ProcessDb" />
+        </EntityType>
+        <EntityType Name="CavityDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MoldId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnomalyDeclarationDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Cavity_Id" FromRole="CavityDb" ToRole="AnomalyDeclarationDb" />
+          <NavigationProperty Name="MoldDb" Relationship="AnomalyTrackingDbModel.FK_CavityDb_MolddB_Id" FromRole="CavityDb" ToRole="MoldDb" />
+        </EntityType>
+        <EntityType Name="ClientAddressDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="FurtherInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClientDbs" Relationship="AnomalyTrackingDbModel.FK_ClientDb_ClientAddressDb_AddressId" FromRole="ClientAddressDb" ToRole="ClientDb" />
+        </EntityType>
+        <EntityType Name="ClientDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ClientAddressDb" Relationship="AnomalyTrackingDbModel.FK_ClientDb_ClientAddressDb_AddressId" FromRole="ClientDb" ToRole="ClientAddressDb" />
+          <NavigationProperty Name="MoldDbs" Relationship="AnomalyTrackingDbModel.FK_MoldDb_ClientdB_Id" FromRole="ClientDb" ToRole="MoldDb" />
+        </EntityType>
+        <EntityType Name="FaceDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnomalyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnomalyDb" Relationship="AnomalyTrackingDbModel.FK_FaceDb_AnomalydB_Id" FromRole="FaceDb" ToRole="AnomalyDb" />
+        </EntityType>
+        <EntityType Name="MoldDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CavityDbs" Relationship="AnomalyTrackingDbModel.FK_CavityDb_MolddB_Id" FromRole="MoldDb" ToRole="CavityDb" />
+          <NavigationProperty Name="ClientDb" Relationship="AnomalyTrackingDbModel.FK_MoldDb_ClientdB_Id" FromRole="MoldDb" ToRole="ClientDb" />
+        </EntityType>
+        <EntityType Name="ProcessDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AnomalyDeclarationDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_Process_Id" FromRole="ProcessDb" ToRole="AnomalyDeclarationDb" />
+          <NavigationProperty Name="AnomalyTypeDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyTypeDb_ProcessDb_ProcessId" FromRole="ProcessDb" ToRole="AnomalyTypeDb" />
+        </EntityType>
+        <EntityType Name="ProductDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ref" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserDb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LvfUserRole" Type="Int32" Nullable="false" />
+          <Property Name="LastModificationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AnomalyDeclarationDbs" Relationship="AnomalyTrackingDbModel.FK_AnomalyDeclarationDb_User_Id" FromRole="UserDb" ToRole="AnomalyDeclarationDb" />
+          <NavigationProperty Name="LvfUserRoleDb" Relationship="AnomalyTrackingDbModel.FK_UserDb_LvfUserRole_Id" FromRole="UserDb" ToRole="LvfUserRoleDb" />
+        </EntityType>
+        <Association Name="FK_AnomalyDb_AnomalyType_Id">
+          <End Type="AnomalyTrackingDbModel.AnomalyTypeDb" Role="AnomalyTypeDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyDb" Role="AnomalyDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyTypeDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDb">
+              <PropertyRef Name="AnomalyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Anomaly_Id">
+          <End Type="AnomalyTrackingDbModel.AnomalyDb" Role="AnomalyDb" Multiplicity="0..1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyDeclarationDb" Role="AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="AnomalyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FaceDb_AnomalydB_Id">
+          <End Type="AnomalyTrackingDbModel.AnomalyDb" Role="AnomalyDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.FaceDb" Role="FaceDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnomalyDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FaceDb">
+              <PropertyRef Name="AnomalyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Cavity_Id">
+          <End Type="AnomalyTrackingDbModel.CavityDb" Role="CavityDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyDeclarationDb" Role="AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CavityDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="CavityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_Process_Id">
+          <End Type="AnomalyTrackingDbModel.ProcessDb" Role="ProcessDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyDeclarationDb" Role="AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyDeclarationDb_User_Id">
+          <End Type="AnomalyTrackingDbModel.UserDb" Role="UserDb" Multiplicity="0..1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyDeclarationDb" Role="AnomalyDeclarationDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyDeclarationDb">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyTypeDb_ProcessDb_ProcessId">
+          <End Type="AnomalyTrackingDbModel.ProcessDb" Role="ProcessDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.AnomalyTypeDb" Role="AnomalyTypeDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnomalyTypeDb">
+              <PropertyRef Name="ProcessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CavityDb_MolddB_Id">
+          <End Type="AnomalyTrackingDbModel.MoldDb" Role="MoldDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.CavityDb" Role="CavityDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MoldDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CavityDb">
+              <PropertyRef Name="MoldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientDb_ClientAddressDb_AddressId">
+          <End Type="AnomalyTrackingDbModel.ClientAddressDb" Role="ClientAddressDb" Multiplicity="0..1" />
+          <End Type="AnomalyTrackingDbModel.ClientDb" Role="ClientDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientAddressDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClientDb">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MoldDb_ClientdB_Id">
+          <End Type="AnomalyTrackingDbModel.ClientDb" Role="ClientDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.MoldDb" Role="MoldDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MoldDb">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDb_LvfUserRole_Id">
+          <End Type="AnomalyTrackingDbModel.LvfUserRoleDb" Role="LvfUserRoleDb" Multiplicity="1" />
+          <End Type="AnomalyTrackingDbModel.UserDb" Role="UserDb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LvfUserRoleDb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDb">
+              <PropertyRef Name="LvfUserRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AnomalyTrackingDbModelStoreContainer" CdmEntityContainer="AnomalyTrackingDbEntities">
+          <EntitySetMapping Name="LvfUserRoleDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.LvfUserRoleDb">
+              <MappingFragment StoreEntitySet="LvfUserRoleDb">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnomalyDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.AnomalyDb">
+              <MappingFragment StoreEntitySet="AnomalyDb">
+                <ScalarProperty Name="FaceId" ColumnName="FaceId" />
+                <ScalarProperty Name="AnomalyTypeId" ColumnName="AnomalyTypeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnomalyDeclarationDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.AnomalyDeclarationDb">
+              <MappingFragment StoreEntitySet="AnomalyDeclarationDb">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="AnomalyId" ColumnName="AnomalyId" />
+                <ScalarProperty Name="CavityId" ColumnName="CavityId" />
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnomalyTypeDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.AnomalyTypeDb">
+              <MappingFragment StoreEntitySet="AnomalyTypeDb">
+                <ScalarProperty Name="ProcessId" ColumnName="ProcessId" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CavityDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.CavityDb">
+              <MappingFragment StoreEntitySet="CavityDb">
+                <ScalarProperty Name="MoldId" ColumnName="MoldId" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientAddressDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.ClientAddressDb">
+              <MappingFragment StoreEntitySet="ClientAddressDb">
+                <ScalarProperty Name="FurtherInformation" ColumnName="FurtherInformation" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.ClientDb">
+              <MappingFragment StoreEntitySet="ClientDb">
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FaceDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.FaceDb">
+              <MappingFragment StoreEntitySet="FaceDb">
+                <ScalarProperty Name="AnomalyId" ColumnName="AnomalyId" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoldDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.MoldDb">
+              <MappingFragment StoreEntitySet="MoldDb">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.ProcessDb">
+              <MappingFragment StoreEntitySet="ProcessDb">
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.ProductDb">
+              <MappingFragment StoreEntitySet="ProductDb">
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="Ref" ColumnName="Ref" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDbs">
+            <EntityTypeMapping TypeName="AnomalyTrackingDbModel.UserDb">
+              <MappingFragment StoreEntitySet="UserDb">
+                <ScalarProperty Name="LastModificationDate" ColumnName="LastModificationDate" />
+                <ScalarProperty Name="LvfUserRole" ColumnName="LvfUserRole" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

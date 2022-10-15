@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.notif-container {
+    min-width: 20rem;
+    min-height: 4rem;
+}
+.notif-info {
+    @include flexCenter();
+    justify-content: space-between;
+    padding-left: 0.5rem;
+    border-left: 1px solid lightgrey;
+}
+.notif-message {
+    margin-top: 1rem;
+}
+
+.notif-date {
+    padding: 0;
+    margin: 0;
+    color: rgba(black, 0.5);
+}
+
+.notification-icon {
+    position: relative;
+    background-color: white;
+}
+.notif-count {
+    position: absolute;
+    border-radius: 50%;
+    top: 30%;
+    right: 10%;
+    color: #fff;
+    background-color: #fe687d;
+}
+
+.notif-date {
+    font-size: 0.6rem;
+    color: rbga(black, 0.5);
+}
+
+.avatar-sm {
+    object-fit: cover;
+}
+
+.dropdown-toggle:after {
+    display: none;
+}
+
+.user-name {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #343030;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+}
+
+.user-role {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    letter-spacing: 0.5px;
+    color: #434040;
+}
+
+.custom-toggle {
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.header-logo {
+    position: relative;
+    margin-top: -15px !important;
+    width: 130px !important;
+    padding-left: 0.8rem;
+}
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.search-bar {
+    background: #F0F2F5;
+    font-family: Roboto;
+    border-radius: 4px;
+}
+
+.placeholder-style{
+    color: #9597A2;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    line-height: 20px;
+    font-style: normal;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    width: 45px;
+    height: 0px;
+    border: 0.1px solid #B1B1B1;
+    transform: rotate(90deg);
+}
+
+.bell-alert {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    bottom: -16px;
+    left: 6px;
+    background: transparent;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+
+    color: #FFFFFF;
+}
+
+.app-alert {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    bottom: 5px;
+    left: 27px;
+    background: transparent;
+}
+
+.app-header-name {
+    position: relative;
+    width: 118px;
+    height: 11px;
+    left: 2px;
+    top: -11.5px;
+
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 16px;
+    color: #0033A0;
+}
+
+.menu-toggle {
+    width: 5px !important;
+}
+
+.deconnexion {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+    background: #FFFFFF;
+    border: 1px solid #E4EAFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    text-transform: uppercase;
+    color: #0033A0;
+}
+
+.huserdrop{
+    margin-top: 20px !important;
+    width: 285px;
+    left: 53px !important;
+}
+
+.happdrop{
+    margin-top: 20px !important;
+    margin-left: 17px !important;
+    text-align: center !important;
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    width: 300px;
+    height: 480px;
+    left: 118px !important;
+}
+
+.hnotifdrop {
+    margin-top: 8.5px !important;
+    margin-left: 27px !important;
+    font-family: 'Work Sans';
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 14px;
+    width: 355px;
+    height: 200px;
+    left: 142px !important;
+}
+
+.notifdroptitle {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+
+    text-transform: uppercase;
+    color: #9597A2;
+}
+
+.notifsicon {
+    position: relative;
+    left: 1px;
+    top: -9px;
+}
+
+.notifbadge {
+    color: #FFFFFF;
+}
+
+.multipleappstoggle {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.multipleappsicon {
+    position: relative;
+    left: -11px;
+    top: 2px;
+}
+
+.appbuttons {
+    height: 125px;
+    width: 125px;
+    left: 0px;
+    top: 0px;
+    border-radius: 4px;
+    white-space: normal !important;
+    background:#F0F2F5;
+    cursor: pointer;
+    &:hover {
+        background: #E4EAFF;
+    }
+    &:focus {
+        background: #E4EAFF;
+    }
+}
+
+.globalparams {
+    font-size: 14px;
+    line-height: 19px;
+    padding: 0rem 0rem !important;
+}
+
+.userprofilcircle {
+    background: #FFFFFF;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #00126C;
+    box-sizing: border-box;
+    border-radius: 200px;
+}
+
+.iconpersoncentered {
+    position: relative;
+    left: 16.67%;
+    top: 16.67%;
+}
+
+.search-glass {
+    font-size: 24px !important;
+}
+
+.material-icons.darkblue { 
+    color: #0033A0; 
+}
+
+.material-icons.greylight { 
+    color: #C6C8D3;
+}
+
+.material-icons.appicons { 
+    font-size: 60px;
+}
+
+.material-icons.paramsicon { 
+    font-size: 16px;
+}

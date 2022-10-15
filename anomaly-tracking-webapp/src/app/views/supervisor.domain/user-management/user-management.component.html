@@ -1,0 +1,248 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="side"
+    opened="true"
+    style="min-width: 60px; background: #f3f3f3"
+    autosize
+    fixedTopGap="56"
+  >
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content [@onSideNavChange]="sidebarState">
+    <div class="SOM">
+      <app-header></app-header>
+      <mat-toolbar style="background-color: #edf2fb">
+        <p class="px-9 mt-3 text-left capitalize text-2xl font-semibold">
+          Manage Users
+        </p>
+        <!-- (click)="OpenAddUser()" -->
+        <button
+        class="bg-emerald-400 hover:bg-emerald-500 addBTN"
+        mat-raised-button
+          style="color: white"
+          (click)="openModal()"
+        >
+          <mat-icon style="color: white">add</mat-icon> Add User
+        </button>
+      </mat-toolbar>
+
+      <div class="">
+
+        <div
+          class=" flex flex-row m-4 bg-white rounded-md px-3 mb-1 w-1/4"
+        >
+        <mat-icon class=" search mt-4 mr-2 text-gray-900">search</mat-icon>
+          <mat-form-field appearance="standard">
+
+            <input matInput placeholder="Filter users"
+            type="text"
+            id="searchfilterUser"
+            name="searchfilterUser"
+            [(ngModel)]="searchfilterUser"
+            (keyup)="getUsers()"
+          class="form-control"
+            />
+          </mat-form-field>
+
+        </div>
+                <div class="table-responsive flex justify-center">
+                  <div class="contTable table-responsive m-4 px-4 py-4 bg-white w-full rounded-md">
+                      <table class="mat-row mat-elevation-z4 px-4 grid-container w-full">
+                          <thead class=" border-b">
+                <tr>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">{{ "app.shared.firstname" | translate }}</th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">{{ "app.shared.lastname" | translate }}</th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">{{ "app.shared.code" | translate }}</th>
+
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">{{ "app.user.userrole" | translate }}</th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">
+                    {{ "app.shared.lastmodificationdate" | translate }}
+                  </th>
+                  <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-3 text-left">{{ "app.shared.actions" | translate }}</th>
+                </tr>
+              </thead>
+              <tbody class="mat-row" *ngFor="let user of users; let i = index">
+                <tr class=" table-row">
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    {{ user.FirstName }}
+                  </td>
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    {{ user.LastName }}
+                  </td>
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    {{ user.Code }}
+                  </td>
+
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    {{ user.LvfUserRoleLabel | translate }}
+                  </td>
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    {{ user.LastModificationDateTimeString }}
+                  </td>
+                  <td  class="px-6 py-3 whitespace-nowrap text-sm">
+                    <button mat-icon-button color="warn">
+                      <mat-icon (click)="onDeleteUser(user.Id)">
+                        delete
+                      </mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      color="primary"
+                      (click)="editUser(user.Id)"
+                    >
+                      <mat-icon> edit </mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+
+      </div>
+
+      <ng-template #userDetailPopup let-modal let-c="close" let-d="dismiss">
+        <div class="modal-header text-2xl text-center  justify-center">
+          <strong *ngIf="createoredit === 'edit'">{{ "app.user.update" | translate }}</strong>
+
+          <strong *ngIf="createoredit === 'create'">{{ "app.user.creation" | translate }}</strong>
+
+        </div>
+        <!-- used reactive forms to be able to check passwords  -->
+        <form  class="form" [formGroup]="reactiveform">
+          <div class="modal-body pb-0">
+
+
+              <mat-form-field appearance="legacy">
+                  <mat-label class="required">First Name </mat-label>
+                  <input formControlName="FirstName" matInput [(ngModel)]="user.FirstName" [required]="true" class="form-control" maxlength="50" name="FirstName" >
+              </mat-form-field>
+              <br>
+
+              <mat-form-field appearance="legacy">
+
+                  <mat-label class="required"> Last Name</mat-label>
+                  <input formControlName="LastName" matInput [(ngModel)]="user.LastName" required class="form-control" maxlength="50" name="LastName">
+              </mat-form-field>
+              <mat-form-field appearance="legacy">
+                  <mat-label class="required">Code</mat-label>
+                  <input formControlName="Code"  matInput [(ngModel)]="user.Code"  required class="form-control" maxlength="50" name="Code" >
+              </mat-form-field>
+
+              <div class="" >
+                  <label mat-label class="radio radio-info " for="radio-{{ role.value }}"
+
+                  *ngFor="let role of lvfUserRoles; let i = index">
+                      <input formControlName="LvfUserRole" mat-input type="radio" class="" required
+                      [(ngModel)]="user.LvfUserRole" [value]="role.value" id="radio-{{ role.value }}"
+                       name="radio-{{ role.value }}" (click)="onChangeRole($event)" />
+                      <span class="mr-5">{{ role.label | translate }}</span>
+                      <span class="checkmark"></span>
+                      </label>
+
+              </div>
+              <br>
+              <!-- switch button to allow changing password in case of supervisor,
+              only shown in edit mode and if role is supervisor -->
+              <div class="form-check form-switch"
+              [hidden]="(createoredit==='create' || user.LvfUserRole === 2 || reallvfroleuser === 2) "
+              >
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" (click)="AllowChangePassword($event)">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Change Password</label>
+              </div>
+              <!-- this div is only in case of update of an operator to user ,
+              then we need to show these two inputs : Add new password/ cofirm password -->
+               <div class=""
+              [hidden]="createoredit==='create' || user.LvfUserRole === 2 || reallvfroleuser === 1">
+              <mat-form-field appearance="legacy">
+
+                  <mat-label class="required"> Add New Password</mat-label>
+                <input  formControlName="Password" [required]="user.LvfUserRole === 1 && reallvfroleuser === 2" matInput [(ngModel)]="user.Password" class="form-control"
+                [type]="showPassword2 ? 'text' : 'password'" maxlength="50" name="Password" >
+                <mat-icon matSuffix (click)="togglePasswordVisibility2()">
+                  {{ showPassword2 ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </mat-form-field>
+
+
+            <mat-form-field appearance="legacy">
+              <mat-label class="required">Confirm Password</mat-label>
+              <input matInput  formControlName="ConfirmPassword"
+              class="form-control" [(ngModel)]="ConfirmPassword" [required]="user.LvfUserRole === 1  && reallvfroleuser === 2"
+              [type]="showPassword3 ? 'text' : 'password'" maxlength="50" name="ConfirmPassword" >
+              <mat-icon matSuffix (click)="togglePasswordVisibility3()">
+                {{ showPassword3 ? "visibility_off" : "visibility" }}
+              </mat-icon>
+          </mat-form-field>
+
+          <span *ngIf="f['ConfirmPassword'].getError('Mustmatch')!==null && user.LvfUserRole === 1  " class="text-danger">Passwords mustmatch.</span>
+
+              </div>
+
+              <!-- in case we need to update a superuser we need to enter the old password first  -->
+              <mat-form-field appearance="legacy" [hidden]="ishidden"
+              *ngIf="user.LvfUserRole === 1 && createoredit ==='edit'"
+              >
+                <mat-label class="" >Old Password</mat-label
+                  >
+                <input formControlName="OldPassword"  matInput [required]="ishidden === false && createoredit ==='edit' "
+                [type]="showPassword ? 'text' : 'password'" class="form-control" maxlength="50" name="OldPassword" >
+                <mat-icon matSuffix (click)="togglePasswordVisibility()">
+                  {{ showPassword ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </mat-form-field>
+               <br>
+               <!-- this error message is created by the custom validator function in ts file  -->
+              <span *ngIf="f['OldPassword'].getError('MustmatchOldPassword')!==null && user.LvfUserRole === 1 && createoredit === 'edit'&& switch === true  "
+               class="text-danger">Invalid Old Password.</span>
+
+              <mat-form-field appearance="legacy"
+              *ngIf="user.LvfUserRole === 1 " [hidden]="ishidden"
+              >
+                <mat-label class="required"
+                *ngIf="createoredit === 'create'"
+                >Password</mat-label>
+                  <mat-label class="required"
+                  *ngIf="createoredit === 'edit' "
+                  >New Password</mat-label>
+                <input  formControlName="Password" [required]="(isoperator === 'radio-1' && createoredit==='create')|| (createoredit === 'edit' && switch === true) " matInput [(ngModel)]="user.Password" class="form-control"
+                [type]="showPassword2 ? 'text' : 'password'" maxlength="50" name="Password" >
+                <mat-icon matSuffix (click)="togglePasswordVisibility2()">
+                  {{ showPassword2 ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </mat-form-field>
+
+
+            <mat-form-field appearance="legacy"
+            *ngIf="user.LvfUserRole === 1" [hidden]="ishidden "
+
+            >
+              <mat-label class="required">Confirm Password</mat-label>
+              <input matInput  formControlName="ConfirmPassword"
+              class="form-control" [(ngModel)]="ConfirmPassword" [required]="(isoperator === 'radio-1' && createoredit==='create')|| (createoredit === 'edit' && switch === true)"
+              [type]="showPassword3 ? 'text' : 'password'" maxlength="50" name="ConfirmPassword" >
+              <mat-icon matSuffix (click)="togglePasswordVisibility3()">
+                {{ showPassword3 ? "visibility_off" : "visibility" }}
+              </mat-icon>
+          </mat-form-field>
+              <span *ngIf="f['ConfirmPassword'].getError('Mustmatch')!==null && user.LvfUserRole === 1 && (createoredit==='create' || switch === true)&& ishidden === false " class="text-danger">Passwords mustmatch.</span>
+
+              <br>
+              <div mat-dialog-action [align]="'end'" class="modal-footer">
+
+                  <button mat-raised-button color="warn" (click)="d('Cross click')">
+          {{'app.shared.cancel'| translate}} </button>
+                  <button mat-raised-button style="margin-left: 10px" color="primary" ngbAutofocus [disabled]="reactiveform.invalid" (click)="onSave() ; modal.close('Save click')">
+          {{'app.shared.done'| translate}} </button>
+
+              </div>
+
+
+          </div>
+      </form>
+      </ng-template>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

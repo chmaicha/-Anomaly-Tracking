@@ -1,0 +1,446 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    mode="side"
+    opened="true"
+    style="min-width: 60px"
+    autosize
+    fixedTopGap="56"
+  >
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+
+  <mat-sidenav-content [@onSideNavChange]="sidebarState">
+    <div
+      *ngIf="notification"
+      style="z-index: 999"
+      class="absolute top-16 right-0 w-60 bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md"
+      role="alert"
+    >
+      <div>
+        <button (click)="hidenotification()" color="warn">
+          <mat-icon style="color: red" class="absolute top-0 right-0"
+            >close</mat-icon
+          >
+        </button>
+      </div>
+      <div class="flex">
+        <div class="py-1 w-16">
+          <mat-icon style="color: green">check</mat-icon>
+        </div>
+        <div>
+          <p class="font-bold">Anomaly declared successefully!</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background-color: #edf2fb">
+      <app-header></app-header>
+      <mat-toolbar style="background-color: #edf2fb">
+        <p class="pl-7 mt-3 text-left capitalize text-2xl font-semibold">
+          Anomaly Declaration
+        </p>
+      </mat-toolbar>
+      <div class="flex justify-center">
+        <div class="bg-white relative h-full justify-center w-5/6">
+          <mat-stepper linear #stepper labelPosition="end" [@.disabled]="true">
+            <mat-step [stepControl]="firstFormGroup">
+              <ng-template matStepLabel></ng-template>
+              <form>
+                <mat-label> Is this Wheel already reported ? </mat-label>
+                <mat-radio-group style="margin: 12px">
+                  <mat-radio-button
+                    name="radio1 "
+                    class="mr-3"
+                    id="radio1 "
+                    (click)="openModalFacePosition()"
+                    (click)="changediv('yes')"
+                    [value]="option1"
+
+                    >YES
+                  </mat-radio-button>
+                  <mat-radio-button
+                    name="radio1 "
+                    id="radio2 "
+                    (click)="changediv('no')"
+                    [value]="option2"
+                    [checked]="option1"
+                    >NO</mat-radio-button
+                  >
+                </mat-radio-group>
+              </form>
+
+              <div id="no " [hidden]="!option2" class="">
+                <div>
+                  <label
+                    class="mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >reference</label
+                  >
+                  <input
+                    #box
+                    (keyup)="getValue(box.value)"
+                    placeholder="wheel-s reference "
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    class="mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >Project</label
+                  >
+                  <select
+                    placeholder="Project "
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
+                    (change)="selectedClient($event)"
+                  >
+                    <option value="" *ngIf="MOL"></option>
+                    <option
+                      required
+                      *ngFor="let project of clients"
+                      [value]="project.Id"
+                    >
+                      {{ project.Label }}
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >Mold</label
+                  >
+                  <select
+                    class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Mold "
+                  >
+                    <option *ngIf="hideInput">A1</option>
+
+                    <option required *ngFor="let mold of molds" [value]="mold.Id">
+                      {{ mold.Label }}
+                    </option>
+                  </select>
+                </div>
+
+
+
+                  <!-- Cavity Selection -->
+                  <div>
+                  <form [formGroup]="firstFormGroup">
+                    <label
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >Cavity</label
+                    >
+                    <select
+                      matInput
+                      formControlName="firstCtrl"
+                      required
+                      class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option *ngIf="hideInput">A1</option>
+
+                      <option required>A2</option>
+                      <option>A3</option>
+                      <option>A4</option>
+                    </select>
+                  </form>
+                </div>
+
+                <div>
+                  <form [formGroup]="secondFormGroup">
+                    <label
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >Process</label
+                    >
+                    <select
+                      (change)="onStatusSelect($event)"
+                      formControlName="secondCtrl"
+                      placeholder="Last name"
+                      required
+                      class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option></option>
+                      <option value="Status1">FOAMING</option>
+                      <option value="Status2">SHEATHING</option>
+                      <option value="Status3">ASSEMBLAGE</option>
+                    </select>
+                  </form>
+                </div>
+                <div class="relative left-3/4 mt-4">
+                  <button
+                    type="submit "
+                    matStepperNext
+                    class="text-white mat-elevation-z4 object-right-bottom bg-emerald-400 hover:bg-emerald-500 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-3 py-1 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+
+              <!-- Normal Form by default -->
+              <div id="yes " [hidden]="!option1" class="">
+                <div>
+                  <label
+                    class="mt-3 mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >Project</label
+                  >
+                  <select
+                    placeholder="Project "
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
+                    (change)="selectedClient($event)"
+                  >
+                    <option></option>
+                    <option
+                      required
+                      *ngFor="let project of clients"
+                      [value]="project.Id"
+                      
+                    >
+                      {{ project.Label }}
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                    >Mold</label
+                  >
+                  <select
+                    (change)="selectedMold($event)"
+                    class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Mold"
+                    [disabled]="disablemold"
+
+                  >
+                    <option></option>
+                    <option
+                      required
+                      *ngFor="let mold of molds2"
+                      [value]="mold.Id"
+                    >
+                      {{ mold.Label }}
+                    </option>
+                  </select>
+                </div>
+
+                <div>
+                  <form [formGroup]="firstFormGroup">
+                    <label
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >Cavity</label
+                    >
+                    <select
+                    (change)="selectedCavity($event)"
+                      matInput
+                      formControlName="firstCtrl"
+                      [attr.disabled]="disablecavity ? true :null"
+                      class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      >
+
+                      <option></option>
+                      <option [value]="cavity.Id" *ngFor="let cavity  of cavities "     
+              >
+                        {{ cavity.Label }}
+                      </option>
+                    </select>
+                  </form>
+                </div>
+
+                <div>
+                  <form [formGroup]="secondFormGroup">
+                    <label
+                      class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                      >Process</label
+                    >
+                    <select
+                      (change)="selectedProcess($event)"
+                      formControlName="secondCtrl"
+                      placeholder="Last name"
+                      [attr.disabled]="disableprocess ? true :null"
+                      class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option></option>
+                      <option
+                        required
+                        *ngFor="let process of processs"
+                        [value]="process.Id"
+                      >
+                        {{ process.Label }}
+                      </option>
+                    </select>
+                  </form>
+                </div>
+                <div class="relative left-3/4 mt-4">
+                  <button
+   
+                    type="submit "
+                    matStepperNext
+                    class="text-white mat-elevation-z4 object-right-bottom bg-emerald-400 hover:bg-emerald-500 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                    >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </mat-step>
+            <mat-step>
+              <div>
+                <mat-chip-list  class="mat-chip-list-stacked" [selectable]="true" [multiple]="true"
+                >
+
+                  <div class="p-9">
+                    <mat-chip
+                    *ngFor="let anomalyType of anomalyTypes"
+                     (click)="selectedAnomalyType(anomalyType)"
+                      style="margin-left: 1%; margin-bottom: 1%"
+                      #c="matChip"
+                      matInput
+                      [value]="anomalyType.Id"
+                     (click)="toggleSelection(c)"
+                    (click)="openModalFacePosition()"
+                    >
+                      <mat-icon *ngIf="c.selected"
+
+                      >check</mat-icon>
+                      {{ anomalyType.Label }}
+                    </mat-chip>
+                  </div>
+                </mat-chip-list>
+                <div class="mt-4 mb-2">
+                  <!-- <button
+                    (click)="stepper.reset()"
+                    (click)=" onSave()"
+                    type="submit "
+                    matStepperNext
+                    class="relative left-3/4 text-white bg-emerald-400 hover:bg-emerald-500 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-3 py-1 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+
+                    >
+
+                    DONE
+                  </button> -->
+
+
+                  <button
+                    type="submit "
+                    matStepperPrevious
+                    class="relative left-3 text-white bg-red-400 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-3 py-1 dark:bg-red-600 dark:hover:bg-green-700 dark:focus:ring-red-800 text-center"
+                  >
+                    Previous
+                  </button>
+                </div>
+              </div>
+            </mat-step>
+          </mat-stepper>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ng-template #facePositionPopup let-modal let-c="close" let-d="dismiss">
+  <div class="modal-header bg-light-blue">
+    <strong>{{ "app.user.creation" | translate }}</strong>
+
+    <button
+      type="button"
+      class="close text-30"
+      aria-label="Close"
+      (click)="d('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="relative">
+    <h1 class="text-center">Select Face And Position!!</h1>
+    <div class="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
+      <div class="p-5 bg-white rounded shadow-sm">
+        <div class="relative w-[300px] h-[300px] rounded-full">
+          <img
+            *ngIf="isShown === '1'"
+            class="w-full h-full"
+            src="./assets/images/Moussage.jpg"
+            alt=""
+          />
+          <img
+            *ngIf="isShown === '3'"
+            class="w-full h-full"
+            src="./assets/images/Assemblagestat.jpg"
+            alt=""
+          />
+
+          <img
+            *ngIf="isShown === '2'"
+            class="w-full h-full"
+            src="./assets/images/Gainagevolant.jpg"
+            alt=""
+          />
+          <div class="absolute top-0 left-0 w-full h-full rounded-full">
+            <mat-chip-list class="mat-chip-list" [selectable]="true" [multiple]="true">
+              <mat-chip
+                #c="matChip"
+                *ngFor="let ept of positions1"
+                [value]="ept"
+                [ngClass]="{
+                
+                }"
+                (click)="selectedposition1(ept)"
+                class="flex item-center justify-center w-[30px] h-[30px] rounded-full absolute"
+                (click)="toggleSelection2(c)"
+              >
+                {{ ept }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 bg-white rounded shadow-sm">
+        <div class="relative w-[300px] h-[300px] rounded-full">
+          <img
+            *ngIf="isShown === '1'"
+            class="w-full h-full"
+            src="./assets/images/Moussage back.jpg"
+            alt=""
+          />
+          <img
+            *ngIf="isShown === '3'"
+            class="w-full h-full"
+            src="./assets/images/Assemblage back.jpg"
+            alt=""
+          />
+          <img
+            *ngIf="isShown === '2'"
+            class="w-full h-full"
+            src="./assets/images/Gainage back.JPG"
+            alt=""
+          />
+          <div class="absolute top-0 left-0 w-full h-full rounded-full">
+            <mat-chip-list class="mat-chip-list" [selectable]="true" [multiple]="true">
+              <mat-chip
+                #c="matChip"
+                *ngFor="let emplacement of positions2"
+                (click)="selectedposition2(emplacement)"
+                [value]="emplacement"
+                [ngClass]="{
+                 
+                }"
+                class="flex item-center justify-center w-[30px] h-[30px] rounded-full absolute"
+                (click)="toggleSelection2(c)"
+              >
+                {{ emplacement }}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div mat-dialog-action [align]="'end'">
+      <button
+        class="mt-3 bg-emerald-400 mat-elevation-z4 object-right-bottom hover:bg-emerald-500"
+        style="border-radius: 25px"
+        mat-raised-button
+        (click)=" onSave()"
+      >
+        save
+      </button>
+    </div>
+  </div>
+</ng-template>

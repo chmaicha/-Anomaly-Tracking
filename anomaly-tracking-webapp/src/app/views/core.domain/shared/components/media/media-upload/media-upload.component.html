@@ -1,0 +1,62 @@
+<figure class="figure" #figure>
+
+    <input #fileInput type="file" (change)="fileProgress($event)" class="d-none" accept="image/*" />
+    <button class="btn btn-icon btn-cercle btn-info icon-position box-shadow-2" (click)="fileInput.click()"><i
+            class="i-Pen-5 " ngbTooltip=" {{'app.shared.edit' | translate}}" container="body">
+        </i></button>
+
+    <button *ngIf="media.Id || previewUrl" class="btn btn-icon btn-cercle btn-danger delete-position box-shadow-2 text-20"
+        (click)="onDelete();"> <span ngbTooltip=" {{'app.shared.delete' | translate}}" container="body" 
+            aria-hidden="true">&times;</span></button>
+    <div class="overlay"></div>
+    <img *ngIf="!previewUrl" class="image box-shadow-1" src="{{media.FileOriginalName || defaultMedia}}" alt="logo">
+    <img *ngIf="previewUrl" class="image box-shadow-1" [src]="previewUrl" />
+</figure>
+
+
+<ng-template let-modal #deletemedia>
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">{{'app.alert.confirm'| translate }}</h4>
+        <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+            (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p><strong>{{'app.alert.deletionquestion' | translate}}</strong></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary btn-rounded"
+            (click)="modal.dismiss('cancel')">{{'app.shared.cancel'| translate }}</button>
+        <button type="button" ngbAutofocus class="btn btn-wide btn-danger btn-rounded"
+            (click)="modal.close('Ok'); resetUpload();">{{'app.shared.delete'| translate }}</button>
+    </div>
+
+</ng-template>
+
+
+
+
+
+
+
+
+<!-- <ng-template #modalCropper let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{'app.fileupload.updateimage'}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <img-cropper [image]="imageCropData" [settings]="cropperSettings" (change)="fileProgress($event)"></img-cropper>
+        <img *ngIf="imageCropData.image" class="mt-3  mr-3" [src]="imageCropData.image"
+            [width]="cropperSettings.croppedWidth">
+        <img *ngIf="imageCropData.image" class="rounded-circle  img-size m-auto" [src]="imageCropData.image"
+            [width]="cropperSettings.croppedWidth">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-rounded btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template> -->
